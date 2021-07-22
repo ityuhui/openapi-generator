@@ -707,6 +707,13 @@ fail:
         }
         localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
         {{/isString}}
+        {{#isByteArray}}
+        if(!cJSON_IsString(localMapObject))
+        {
+            goto end;
+        }
+        localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
+        {{/isByteArray}}
         {{#isBoolean}}
         if(!cJSON_IsBool(localMapObject))
         {
